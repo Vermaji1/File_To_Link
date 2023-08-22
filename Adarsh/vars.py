@@ -24,11 +24,11 @@ class Var(object):
     APP_NAME = None
     OWNER_USERNAME = str(getenv('OWNER_USERNAME'))
     if 'DYNO' in environ:
-        ON_HEROKU = True
-        APP_NAME = str(getenv('APP_NAME'))
+        ON_RENDER = True
+        APP_NAME = str(getenv('APP_NAME' ,'File-To-Link'))
     
     else:
-        ON_HEROKU = False
+        ON_RENDER = False
     FQDN = str(getenv('FQDN', BIND_ADRESS)) if not ON_RENDER or getenv('FQDN') else APP_NAME+'.render.com'
     HAS_SSL=bool(getenv('HAS_SSL',False))
     if HAS_SSL:
